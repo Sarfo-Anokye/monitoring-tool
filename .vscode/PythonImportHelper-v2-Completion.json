@@ -186,6 +186,15 @@
         "documentation": {}
     },
     {
+        "label": "platform",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "platform",
+        "description": "platform",
+        "detail": "platform",
+        "documentation": {}
+    },
+    {
         "label": "APIRouter",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -195,6 +204,14 @@
     },
     {
         "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Query",
         "importPath": "fastapi",
         "description": "fastapi",
         "isExtraImport": true,
@@ -218,27 +235,28 @@
         "documentation": {}
     },
     {
-        "label": "save_log",
-        "importPath": "app.crud.logs_crud",
-        "description": "app.crud.logs_crud",
+        "label": "typing",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "app.crud.logs_crud",
+        "importPath": "typing",
+        "description": "typing",
+        "detail": "typing",
         "documentation": {}
     },
     {
-        "label": "fetch_platform_logs",
-        "importPath": "app.services.logs_service",
-        "description": "app.services.logs_service",
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
         "isExtraImport": true,
-        "detail": "app.services.logs_service",
+        "detail": "typing",
         "documentation": {}
     },
     {
-        "label": "BaseModel",
-        "importPath": "pydantic",
-        "description": "pydantic",
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
         "isExtraImport": true,
-        "detail": "pydantic",
+        "detail": "typing",
         "documentation": {}
     },
     {
@@ -282,12 +300,27 @@
         "documentation": {}
     },
     {
-        "label": "platform",
-        "kind": 6,
+        "label": "save_log",
+        "importPath": "app.crud.logs_crud",
+        "description": "app.crud.logs_crud",
         "isExtraImport": true,
-        "importPath": "platform",
-        "description": "platform",
-        "detail": "platform",
+        "detail": "app.crud.logs_crud",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_platform_logs",
+        "importPath": "app.services.logs_service",
+        "description": "app.services.logs_service",
+        "isExtraImport": true,
+        "detail": "app.services.logs_service",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
         "documentation": {}
     },
     {
