@@ -10,12 +10,10 @@ class LogBase(BaseModel):
     message: str
     timestamp: Optional[datetime] = None
 
-
-class LogCreate(LogBase):
-    pass
-
-class Log(LogBase):
-    id: int
-
-    class Config:
-        orm_mode = True
+class AwsQuery(BaseModel):
+    log_group: str
+    start_time: str
+    end_time: str
+    secret_key: str
+    access_key: str
+    
