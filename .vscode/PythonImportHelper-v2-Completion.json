@@ -1,5 +1,14 @@
 [
     {
+        "label": "boto3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "boto3",
+        "description": "boto3",
+        "detail": "boto3",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -162,6 +171,15 @@
     },
     {
         "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -211,7 +229,23 @@
         "documentation": {}
     },
     {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "Query",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
         "importPath": "fastapi",
         "description": "fastapi",
         "isExtraImport": true,
@@ -308,11 +342,43 @@
         "documentation": {}
     },
     {
+        "label": "convert_to_timestamp",
+        "importPath": "app.services.aws_service",
+        "description": "app.services.aws_service",
+        "isExtraImport": true,
+        "detail": "app.services.aws_service",
+        "documentation": {}
+    },
+    {
+        "label": "retrieve_aws_logs",
+        "importPath": "app.services.aws_service",
+        "description": "app.services.aws_service",
+        "isExtraImport": true,
+        "detail": "app.services.aws_service",
+        "documentation": {}
+    },
+    {
         "label": "fetch_platform_logs",
         "importPath": "app.services.logs_service",
         "description": "app.services.logs_service",
         "isExtraImport": true,
         "detail": "app.services.logs_service",
+        "documentation": {}
+    },
+    {
+        "label": "AwsQuery",
+        "importPath": "app.schemas.log_schema",
+        "description": "app.schemas.log_schema",
+        "isExtraImport": true,
+        "detail": "app.schemas.log_schema",
+        "documentation": {}
+    },
+    {
+        "label": "LogCreate",
+        "importPath": "app.schemas.log_schema",
+        "description": "app.schemas.log_schema",
+        "isExtraImport": true,
+        "detail": "app.schemas.log_schema",
         "documentation": {}
     },
     {
@@ -324,11 +390,27 @@
         "documentation": {}
     },
     {
-        "label": "LogCreate",
-        "importPath": "app.schemas.log_schema",
-        "description": "app.schemas.log_schema",
+        "label": "initialize_boto3_client",
+        "importPath": "app.core.aws_client_config",
+        "description": "app.core.aws_client_config",
         "isExtraImport": true,
-        "detail": "app.schemas.log_schema",
+        "detail": "app.core.aws_client_config",
+        "documentation": {}
+    },
+    {
+        "label": "BotoCoreError",
+        "importPath": "botocore.exceptions",
+        "description": "botocore.exceptions",
+        "isExtraImport": true,
+        "detail": "botocore.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "ClientError",
+        "importPath": "botocore.exceptions",
+        "description": "botocore.exceptions",
+        "isExtraImport": true,
+        "detail": "botocore.exceptions",
         "documentation": {}
     },
     {
@@ -446,6 +528,15 @@
         "documentation": {}
     },
     {
+        "label": "initialize_boto3_client",
+        "kind": 2,
+        "importPath": "app.core.aws_client_config",
+        "description": "app.core.aws_client_config",
+        "peekOfCode": "def initialize_boto3_client(service,credentials):\n    client= boto3.client(\n        service,\n        region_name=\"us-east-1\",\n        aws_access_key_id=credentials[\"aws_access_key\"],\n        aws_secret_access_key=credentials[\"aws_secret_key\"],\n    )\n    return client",
+        "detail": "app.core.aws_client_config",
+        "documentation": {}
+    },
+    {
         "label": "Settings",
         "kind": 6,
         "importPath": "app.core.config",
@@ -518,30 +609,48 @@
         "documentation": {}
     },
     {
+        "label": "get_aws_logs",
+        "kind": 2,
+        "importPath": "app.routes.logs",
+        "description": "app.routes.logs",
+        "peekOfCode": "def get_aws_logs(\n    query:AwsQuery\n):\n    try:\n        start_timestamp,end_timestamp=convert_to_timestamp(query.start_time,query.end_time)\n        if start_timestamp >= end_timestamp:\n            raise HTTPException(status_code=400, detail=\"Start time must be before end time.\")\n        credentials={\n            \"aws_access_key\":query.access_key,\n            \"aws_secret_key\":query.secret_key",
+        "detail": "app.routes.logs",
+        "documentation": {}
+    },
+    {
         "label": "LogBase",
         "kind": 6,
         "importPath": "app.schemas.log_schema",
         "description": "app.schemas.log_schema",
-        "peekOfCode": "class LogBase(BaseModel):\n    log_source: str\n    severity: Optional[str] = None\n    message: str\n    timestamp: Optional[datetime] = None\nclass LogCreate(LogBase):\n    pass\nclass Log(LogBase):\n    id: int\n    class Config:",
+        "peekOfCode": "class LogBase(BaseModel):\n    log_source: str\n    severity: Optional[str] = None\n    message: str\n    timestamp: Optional[datetime] = None\nclass AwsQuery(BaseModel):\n    log_group: str\n    start_time: str\n    end_time: str\n    secret_key: str",
         "detail": "app.schemas.log_schema",
         "documentation": {}
     },
     {
-        "label": "LogCreate",
+        "label": "AwsQuery",
         "kind": 6,
         "importPath": "app.schemas.log_schema",
         "description": "app.schemas.log_schema",
-        "peekOfCode": "class LogCreate(LogBase):\n    pass\nclass Log(LogBase):\n    id: int\n    class Config:\n        orm_mode = True",
+        "peekOfCode": "class AwsQuery(BaseModel):\n    log_group: str\n    start_time: str\n    end_time: str\n    secret_key: str\n    access_key: str",
         "detail": "app.schemas.log_schema",
         "documentation": {}
     },
     {
-        "label": "Log",
-        "kind": 6,
-        "importPath": "app.schemas.log_schema",
-        "description": "app.schemas.log_schema",
-        "peekOfCode": "class Log(LogBase):\n    id: int\n    class Config:\n        orm_mode = True",
-        "detail": "app.schemas.log_schema",
+        "label": "retrieve_aws_logs",
+        "kind": 2,
+        "importPath": "app.services.aws_service",
+        "description": "app.services.aws_service",
+        "peekOfCode": "def retrieve_aws_logs(log_group: str, start_time: int, end_time: int,credentials):\n    try:\n        client =initialize_boto3_client(\"logs\",credentials)\n        # Filter log events\n        response = client.filter_log_events(\n            logGroupName=log_group,\n            startTime=start_time,\n            endTime=end_time\n        )\n        logs = []",
+        "detail": "app.services.aws_service",
+        "documentation": {}
+    },
+    {
+        "label": "convert_to_timestamp",
+        "kind": 2,
+        "importPath": "app.services.aws_service",
+        "description": "app.services.aws_service",
+        "peekOfCode": "def convert_to_timestamp(start_time,end_time):\n    start_time_clean = start_time.rstrip('Z')\n    end_time_clean = end_time.rstrip('Z')\n    # Convert start_time and end_time from string to milliseconds\n    start_timestamp = int(datetime.datetime.strptime(start_time_clean, \"%Y-%m-%dT%H:%M:%S\").timestamp() * 1000)\n    end_timestamp = int(datetime.datetime.strptime(end_time_clean, \"%Y-%m-%dT%H:%M:%S\").timestamp() * 1000)\n    return start_timestamp,end_timestamp",
+        "detail": "app.services.aws_service",
         "documentation": {}
     },
     {
